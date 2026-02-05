@@ -34,8 +34,11 @@ export default function Home() {
       </section>
 
       {/* Concept / Instagram-like Feed */}
-      <section className="container mx-auto px-6 py-20 max-w-4xl">
-        <h2 className="text-4xl md:text-5xl font-oswald font-bold mb-16 text-stroke opacity-30">CONCEPT</h2>
+      <section id="concept" className="container mx-auto px-6 py-20 max-w-4xl">
+        <div className="flex items-center gap-4 mb-16">
+          <h2 className="text-4xl md:text-5xl font-oswald font-bold text-stroke opacity-30">CONCEPT</h2>
+          <span className="px-3 py-1 bg-brand-red text-[10px] font-bold tracking-widest uppercase rounded-full animate-pulse text-white">Live Now</span>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6 text-gray-400 font-light leading-relaxed">
