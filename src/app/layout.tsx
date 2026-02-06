@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Oswald, Inter } from "next/font/google";
+import { Oswald, Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const oswald = Oswald({
@@ -12,9 +12,14 @@ const inter = Inter({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "OFUNA RE:ROOM | ROCK BAR",
-  description: "Ofuna's authentic rock bar community. Good music, good drinks, good people.",
+  title: "OFUNA RE:ROOM | AUTHENTIC ROCK BAR",
+  description: "大船の地下に広がる、ロックを愛する大人たちの隠れ家。70年代のロンドンを彷彿とさせるモダン・ヴィンテージな空間。",
 };
 
 export default function RootLayout({
@@ -23,9 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ja">
+    <html lang="ja" className="scroll-smooth">
       <body
-        className={`${oswald.variable} ${inter.variable} antialiased bg-brand-black text-white`}
+        className={`${oswald.variable} ${inter.variable} ${playfair.variable} antialiased bg-brand-black text-white`}
       >
         {children}
       </body>
