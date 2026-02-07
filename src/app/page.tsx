@@ -301,34 +301,37 @@ function Gallery() {
   const next = () => setCurrent((c) => (c + 1) % images.length);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((c) => (c + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <div className="relative">
-      <div className="overflow-hidden rounded-2xl aspect-[16/9] md:aspect-[21/9] relative group">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, scale: 1.1 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.95 }}
-            transition={{ duration: 0.7 }}
-            className="absolute inset-0"
+      <div className="overflow-hidden rounded-2xl aspect-[16/9] md:aspect-[21/9] relative group cursor-pointer" onClick={next}>
+        {images.map((img, i) => (
+          <div
+            key={i}
+            className={"absolute inset-0 transition-all duration-700 " + (i === current ? "opacity-100 scale-100" : "opacity-0 scale-105")}
           >
             <img
-              src={images[current].url}
-              alt={images[current].caption}
+              src={img.url}
+              alt={img.caption}
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
-          </motion.div>
-        </AnimatePresence>
+          </div>
+        ))}
         <div className="absolute bottom-6 left-6 z-10">
           <p className="text-sm font-bold tracking-widest uppercase text-brand-gold">{images[current].caption}</p>
           <p className="text-xs text-white/40 mt-1">{current + 1} / {images.length}</p>
         </div>
-        <button onClick={prev} data-hover className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <button onClick={next} data-hover className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
@@ -337,10 +340,7 @@ function Gallery() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={cn(
-              "w-2 h-2 rounded-full transition-all",
-              i === current ? "bg-brand-gold w-6" : "bg-white/20"
-            )}
+            className={"rounded-full transition-all h-2 " + (i === current ? "bg-brand-gold w-6" : "bg-white/20 w-2")}
           />
         ))}
       </div>
