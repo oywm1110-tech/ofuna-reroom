@@ -1,4 +1,7 @@
-"use client";
+﻿import fs from "fs";
+
+// page.tsx を完全に書き換え
+fs.writeFileSync("src/app/page.tsx", `"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
@@ -96,7 +99,7 @@ function NoiseOverlay() {
     <div
       className="fixed inset-0 pointer-events-none z-[9997] opacity-[0.03]"
       style={{
-        backgroundImage: "url(\"" + noiseUrl + "\")",
+        backgroundImage: "url(\\"" + noiseUrl + "\\")",
         backgroundRepeat: "repeat",
       }}
     />
@@ -265,7 +268,7 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
           className="inline-block"
           style={{ transformOrigin: "bottom" }}
         >
-          {char === " " ? "\u00A0" : char}
+          {char === " " ? "\\u00A0" : char}
         </motion.span>
       ))}
     </span>
@@ -462,12 +465,12 @@ export default function Home() {
       <div className="py-6 border-y border-white/5 bg-brand-black">
         <Marquee speed={40}>
           <span className="text-[11px] font-bold tracking-[0.5em] uppercase text-white/15 flex items-center gap-12">
-            <span>ROCK & ROLL</span><span className="text-brand-gold/30">{"◆"}</span>
-            <span>VINYL RECORDS</span><span className="text-brand-gold/30">{"◆"}</span>
-            <span>LIVE MUSIC</span><span className="text-brand-gold/30">{"◆"}</span>
-            <span>CDJ & TURNTABLE</span><span className="text-brand-gold/30">{"◆"}</span>
-            <span>WHISKY & BEER</span><span className="text-brand-gold/30">{"◆"}</span>
-            <span>OFUNA BASEMENT</span><span className="text-brand-gold/30">{"◆"}</span>
+            <span>ROCK & ROLL</span><span className="text-brand-gold/30">{"\u25C6"}</span>
+            <span>VINYL RECORDS</span><span className="text-brand-gold/30">{"\u25C6"}</span>
+            <span>LIVE MUSIC</span><span className="text-brand-gold/30">{"\u25C6"}</span>
+            <span>CDJ & TURNTABLE</span><span className="text-brand-gold/30">{"\u25C6"}</span>
+            <span>WHISKY & BEER</span><span className="text-brand-gold/30">{"\u25C6"}</span>
+            <span>OFUNA BASEMENT</span><span className="text-brand-gold/30">{"\u25C6"}</span>
           </span>
         </Marquee>
       </div>
@@ -502,7 +505,7 @@ export default function Home() {
               <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
             </div>
             <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-              大船の地下に隠された、ロックを愛する大人たちのためのリビングルーム。ヴィンテージスピーカーから流れる70年代の鼓動を感じてください。
+              \u5927\u8239\u306E\u5730\u4E0B\u306B\u96A0\u3055\u308C\u305F\u3001\u30ED\u30C3\u30AF\u3092\u611B\u3059\u308B\u5927\u4EBA\u305F\u3061\u306E\u305F\u3081\u306E\u30EA\u30D3\u30F3\u30B0\u30EB\u30FC\u30E0\u3002\u30F4\u30A3\u30F3\u30C6\u30FC\u30B8\u30B9\u30D4\u30FC\u30AB\u30FC\u304B\u3089\u6D41\u308C\u308B70\u5E74\u4EE3\u306E\u9F13\u52D5\u3092\u611F\u3058\u3066\u304F\u3060\u3055\u3044\u3002
             </p>
           </div>
         </ScrollReveal>
@@ -518,7 +521,7 @@ export default function Home() {
                 </div>
                 <h3 className="text-3xl md:text-4xl font-playfair font-bold mb-4 italic leading-tight">Uncompromising<br />Sound</h3>
                 <p className="text-white/50 leading-relaxed max-w-sm">
-                  好きなレコードをリクエストしてください。最高品質の音響システムで、アーティストの吐息まで再現します。
+                  \u597D\u304D\u306A\u30EC\u30B3\u30FC\u30C9\u3092\u30EA\u30AF\u30A8\u30B9\u30C8\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u6700\u9AD8\u54C1\u8CEA\u306E\u97F3\u97FF\u30B7\u30B9\u30C6\u30E0\u3067\u3001\u30A2\u30FC\u30C6\u30A3\u30B9\u30C8\u306E\u5410\u606F\u307E\u3067\u518D\u73FE\u3057\u307E\u3059\u3002
                 </p>
               </div>
               <div className="relative z-10 pt-12 flex items-center justify-between">
@@ -541,7 +544,7 @@ export default function Home() {
               <div className="space-y-5">
                 <div className="flex justify-between items-end border-b border-white/5 pb-3">
                   <span className="text-white/50">Table Charge</span>
-                  <span className="text-2xl font-oswald font-bold text-brand-gold">¥500</span>
+                  <span className="text-2xl font-oswald font-bold text-brand-gold">\u00A5500</span>
                 </div>
                 <div className="flex justify-between items-end border-b border-white/5 pb-3">
                   <span className="text-white/50">Music Request</span>
@@ -559,7 +562,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-1 tracking-tight">WHISKY</h3>
                 <p className="text-xs text-white/40">Selected Malts & Bourbon</p>
               </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥900<span className="text-base text-white/40">~</span></div>
+              <div className="relative z-10 text-3xl font-oswald font-bold">\u00A5900<span className="text-base text-white/40">~</span></div>
             </div>
           </ScrollReveal>
 
@@ -570,7 +573,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-1 tracking-tight">CRAFT BEER</h3>
                 <p className="text-xs text-white/40">Heartland & Bass On Tap</p>
               </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥800<span className="text-base text-white/40">~</span></div>
+              <div className="relative z-10 text-3xl font-oswald font-bold">\u00A5800<span className="text-base text-white/40">~</span></div>
             </div>
           </ScrollReveal>
 
@@ -581,7 +584,7 @@ export default function Home() {
                 <h3 className="text-lg font-bold mb-1 tracking-tight">COCKTAILS & MORE</h3>
                 <p className="text-xs text-white/40">Signature Mixes / Soft Drinks / Food</p>
               </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥700<span className="text-base text-white/40">~</span></div>
+              <div className="relative z-10 text-3xl font-oswald font-bold">\u00A5700<span className="text-base text-white/40">~</span></div>
             </div>
           </ScrollReveal>
 
@@ -594,7 +597,7 @@ export default function Home() {
                 <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Opening Hours</h3>
                 <p className="text-white/50 text-sm">
                   <span className="text-white font-oswald text-lg">19:00</span>
-                  <span className="mx-2 text-white/30">→</span>
+                  <span className="mx-2 text-white/30">\u2192</span>
                   <span className="text-white font-oswald text-lg">02:00</span>
                   <span className="ml-3 text-[10px] text-white/30 uppercase tracking-widest">Closed on Sundays</span>
                 </p>
@@ -614,7 +617,7 @@ export default function Home() {
                 <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">Equipment</h2>
               </div>
               <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-                レコードもCDJも。アナログとデジタルが融合する、音楽のための空間。
+                \u30EC\u30B3\u30FC\u30C9\u3082CDJ\u3082\u3002\u30A2\u30CA\u30ED\u30B0\u3068\u30C7\u30B8\u30BF\u30EB\u304C\u878D\u5408\u3059\u308B\u3001\u97F3\u697D\u306E\u305F\u3081\u306E\u7A7A\u9593\u3002
               </p>
             </div>
           </ScrollReveal>
@@ -625,21 +628,21 @@ export default function Home() {
                 icon: Disc3,
                 title: "Turntable",
                 subtitle: "Vinyl Player",
-                description: "レコードの温かみあるサウンドをお楽しみください。お気に入りのレコードをお持ち込みいただくこともできます。",
+                description: "\u30EC\u30B3\u30FC\u30C9\u306E\u6E29\u304B\u307F\u3042\u308B\u30B5\u30A6\u30F3\u30C9\u3092\u304A\u697D\u3057\u307F\u304F\u3060\u3055\u3044\u3002\u304A\u6C17\u306B\u5165\u308A\u306E\u30EC\u30B3\u30FC\u30C9\u3092\u304A\u6301\u3061\u8FBC\u307F\u3044\u305F\u3060\u304F\u3053\u3068\u3082\u3067\u304D\u307E\u3059\u3002",
                 specs: "Technics SL-1200 Series",
               },
               {
                 icon: Music2,
                 title: "CDJ System",
                 subtitle: "Digital DJ",
-                description: "CDJを完備。DJイベントやパーティーにも対応。デジタルの利便性とクオリティを両立。",
+                description: "CDJ\u3092\u5B8C\u5099\u3002DJ\u30A4\u30D9\u30F3\u30C8\u3084\u30D1\u30FC\u30C6\u30A3\u30FC\u306B\u3082\u5BFE\u5FDC\u3002\u30C7\u30B8\u30BF\u30EB\u306E\u5229\u4FBF\u6027\u3068\u30AF\u30AA\u30EA\u30C6\u30A3\u3092\u4E21\u7ACB\u3002",
                 specs: "Pioneer CDJ Series / DJM Mixer",
               },
               {
                 icon: Mic2,
                 title: "Live Stage",
                 subtitle: "Performance",
-                description: "ライブ演奏も可能なステージを完備。アコースティックからバンドまで、様々なパフォーマンスに対応。",
+                description: "\u30E9\u30A4\u30D6\u6F14\u594F\u3082\u53EF\u80FD\u306A\u30B9\u30C6\u30FC\u30B8\u3092\u5B8C\u5099\u3002\u30A2\u30B3\u30FC\u30B9\u30C6\u30A3\u30C3\u30AF\u304B\u3089\u30D0\u30F3\u30C9\u307E\u3067\u3001\u69D8\u3005\u306A\u30D1\u30D5\u30A9\u30FC\u30DE\u30F3\u30B9\u306B\u5BFE\u5FDC\u3002",
                 specs: "PA System / Microphones / Monitors",
               },
             ].map((item, i) => (
@@ -695,7 +698,7 @@ export default function Home() {
             {[
               { date: "02.14", day: "FRI", title: "VALENTINE ROCK NIGHT", dj: "Resident DJ", badge: "SPECIAL", badgeColor: "bg-brand-red", type: "DJ EVENT" },
               { date: "02.21", day: "FRI", title: "90s UK ROCK SPECIAL", dj: "Guest DJ Select", badge: "GUEST", badgeColor: "bg-brand-gold text-black", type: "DJ EVENT" },
-              { date: "02.28", day: "SAT", title: "VINYL ONLY SESSION", dj: "BYOR — Bring Your Own Records", badge: "", badgeColor: "", type: "OPEN DECK" },
+              { date: "02.28", day: "SAT", title: "VINYL ONLY SESSION", dj: "BYOR \u2014 Bring Your Own Records", badge: "", badgeColor: "", type: "OPEN DECK" },
             ].map((event, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div
@@ -739,12 +742,12 @@ export default function Home() {
               <div className="flex items-center gap-4">
                 <Mic2 className="w-5 h-5 text-brand-gold" />
                 <div>
-                  <h4 className="font-bold text-sm">ライブ出演・イベント貸切のご相談</h4>
-                  <p className="text-[10px] text-white/40 mt-1">バンド・アコースティックライブ・ DJイベントなどお気軽にお問い合わせください</p>
+                  <h4 className="font-bold text-sm">\u30E9\u30A4\u30D6\u51FA\u6F14\u30FB\u30A4\u30D9\u30F3\u30C8\u8CB8\u5207\u306E\u3054\u76F8\u8AC7</h4>
+                  <p className="text-[10px] text-white/40 mt-1">\u30D0\u30F3\u30C9\u30FB\u30A2\u30B3\u30FC\u30B9\u30C6\u30A3\u30C3\u30AF\u30E9\u30A4\u30D6\u30FB DJ\u30A4\u30D9\u30F3\u30C8\u306A\u3069\u304A\u6C17\u8EFD\u306B\u304A\u554F\u3044\u5408\u308F\u305B\u304F\u3060\u3055\u3044</p>
                 </div>
               </div>
               <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black hover:border-brand-gold transition-all flex items-center gap-2">
-                <Instagram className="w-3 h-3" /> DMでお問い合わせ
+                <Instagram className="w-3 h-3" /> DM\u3067\u304A\u554F\u3044\u5408\u308F\u305B
               </a>
             </div>
           </ScrollReveal>
@@ -782,9 +785,9 @@ export default function Home() {
                   <h2 className="text-4xl md:text-6xl font-playfair font-bold leading-[0.9]">Locate<br />Us<span className="text-brand-gold">.</span></h2>
                 </div>
                 <div className="space-y-4 text-white/50 text-lg leading-relaxed">
-                  <p>〒247-0056<br />神奈川県鎌倉市大船 X-X-X</p>
+                  <p>\u3012247-0056<br />\u795E\u5948\u5DDD\u770C\u938C\u5009\u5E02\u5927\u8239 X-X-X</p>
                   <p className="text-brand-gold font-bold text-base tracking-wider">OFUNA RE:ROOM B1F</p>
-                  <p className="text-sm italic text-white/30">大船駅から徒歩3分、路地裏の秘密基地。</p>
+                  <p className="text-sm italic text-white/30">\u5927\u8239\u99C5\u304B\u3089\u5F92\u6B693\u5206\u3001\u8DEF\u5730\u88CF\u306E\u79D8\u5BC6\u57FA\u5730\u3002</p>
                 </div>
 
                 <div className="glass-panel p-6 space-y-4">
@@ -832,7 +835,7 @@ export default function Home() {
                 >
                   <div className="flex items-center gap-3">
                     <MapPin className="w-4 h-4 text-brand-gold" />
-                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">大船駅からのルートを確認</span>
+                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">\u5927\u8239\u99C5\u304B\u3089\u306E\u30EB\u30FC\u30C8\u3092\u78BA\u8A8D</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-brand-gold transition-colors" />
                 </a>
@@ -844,15 +847,15 @@ export default function Home() {
           <ScrollReveal>
             <div className="glass-panel p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 mb-20 border-brand-gold/10">
               <div>
-                <h3 className="text-2xl md:text-3xl font-playfair font-bold mb-2">今夜、会いに行く。</h3>
-                <p className="text-white/40 text-sm">予約不要・お一人様歓迎・初めての方もお気軽に</p>
+                <h3 className="text-2xl md:text-3xl font-playfair font-bold mb-2">\u4ECA\u591C\u3001\u4F1A\u3044\u306B\u884C\u304F\u3002</h3>
+                <p className="text-white/40 text-sm">\u4E88\u7D04\u4E0D\u8981\u30FB\u304A\u4E00\u4EBA\u69D8\u6B53\u8FCE\u30FB\u521D\u3081\u3066\u306E\u65B9\u3082\u304A\u6C17\u8EFD\u306B</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full bg-brand-gold text-black font-bold text-sm tracking-widest uppercase hover:bg-white transition-colors flex items-center gap-2">
-                  <Instagram className="w-4 h-4" /> DMでお問い合わせ
+                  <Instagram className="w-4 h-4" /> DM\u3067\u304A\u554F\u3044\u5408\u308F\u305B
                 </a>
                 <a href="https://maps.google.com/?q=35.3533,139.5312" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full border border-white/20 font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all flex items-center gap-2">
-                  <MapPin className="w-4 h-4" /> アクセス
+                  <MapPin className="w-4 h-4" /> \u30A2\u30AF\u30BB\u30B9
                 </a>
               </div>
             </div>
@@ -861,7 +864,7 @@ export default function Home() {
           <div className="pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
               <div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
-              <div className="text-[9px] tracking-[0.4em] uppercase text-white/30">© 2026 OFUNA RE:ROOM. ALL RIGHTS RESERVED.</div>
+              <div className="text-[9px] tracking-[0.4em] uppercase text-white/30">\u00A9 2026 OFUNA RE:ROOM. ALL RIGHTS RESERVED.</div>
               <div className="flex gap-6">
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="text-white/40 hover:text-brand-gold transition-colors">
                   <Instagram className="w-5 h-5" />
@@ -877,3 +880,6 @@ export default function Home() {
     </main>
   );
 }
+`);
+
+console.log("page.tsx updated with all new sections!");
