@@ -291,6 +291,8 @@ function Marquee({ children, speed = 30 }: { children: React.ReactNode; speed?: 
 /* ─── Gallery ─── */
 function Gallery() {
   const [current, setCurrent] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
   const images = [
     { url: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop", caption: "DJ Night" },
     { url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop", caption: "Vinyl Collection" },
@@ -301,6 +303,17 @@ function Gallery() {
   const next = () => setCurrent((c) => (c + 1) % images.length);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 50) next();
+    if (touchStart - touchEnd < -50) prev();
+  };
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % images.length);
@@ -310,17 +323,19 @@ function Gallery() {
 
   return (
     <div className="relative">
-      <div className="overflow-hidden rounded-2xl aspect-[16/9] md:aspect-[21/9] relative group cursor-pointer" onClick={next}>
+      <div
+        className="overflow-hidden rounded-2xl aspect-[16/9] md:aspect-[21/9] relative group cursor-pointer select-none"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        onClick={next}
+      >
         {images.map((img, i) => (
           <div
             key={i}
             className={"absolute inset-0 transition-all duration-700 " + (i === current ? "opacity-100 scale-100" : "opacity-0 scale-105")}
           >
-            <img
-              src={img.url}
-              alt={img.caption}
-              className="w-full h-full object-cover"
-            />
+            <img src={img.url} alt={img.caption} className="w-full h-full object-cover pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
           </div>
         ))}
