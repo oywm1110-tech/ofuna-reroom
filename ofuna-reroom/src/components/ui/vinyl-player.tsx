@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,7 +16,6 @@ export function VinylPlayer() {
       >
         {open ? <X className="w-5 h-5" /> : <Music2 className="w-5 h-5" />}
       </button>
-
       <AnimatePresence>
         {open && (
           <motion.div
@@ -40,9 +39,7 @@ export function VinylPlayer() {
                 </div>
               </motion.div>
             </div>
-            <p className="text-center text-[9px] text-white/30 mt-3 tracking-widest uppercase">
-              Now Spinning...
-            </p>
+            <p className="text-center text-[9px] text-white/30 mt-3 tracking-widest uppercase">Now Spinning...</p>
           </motion.div>
         )}
       </AnimatePresence>
