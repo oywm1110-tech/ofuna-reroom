@@ -474,7 +474,7 @@ export default function Home() {
       </section>
 
       {/* ═══ MARQUEE 1 ═══ */}
-      <div className="py-6 border-y border-white/5 bg-brand-black">
+      <div className="py-3 md:py-6 border-y border-white/5 bg-brand-black">
         <Marquee speed={40}>
           <span className="text-[11px] font-bold tracking-[0.5em] uppercase text-white/15 flex items-center gap-12">
             <span>ROCK & ROLL</span><span className="text-brand-gold/30">{"◆"}</span>
@@ -488,7 +488,7 @@ export default function Home() {
       </div>
 
       {/* ═══ STATS ═══ */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      <section className="max-w-7xl mx-auto px-6 py-10 md:py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {[
             { value: 2000, suffix: "+", label: "Vinyl Records" },
@@ -509,22 +509,22 @@ export default function Home() {
       </section>
 
       {/* ═══ EXPERIENCE ═══ */}
-      <section id="system" className="max-w-7xl mx-auto px-6 py-32">
+      <section id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
             <div>
               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">What We Offer</span>
               <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
             </div>
             <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-              大船の地下に隠された、ロックを愛する大人たちのためのリビングルーム。ヴィンテージスピーカーから流れる70年代の鼓動を感じてください。
+              レコードとウィスキー。最高の音と酒を、大船の地下で。
             </p>
           </div>
         </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
           <ScrollReveal className="md:col-span-2 md:row-span-2">
-            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[400px]">
+            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[280px] md:min-h-[400px]">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-1000 scale-110 group-hover:scale-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent z-[1]" />
               <div className="relative z-10">
@@ -568,7 +568,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[200px] flex flex-col justify-between">
+            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-wine/80 to-brand-wine/40 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
               <div className="relative z-10">
                 <h3 className="text-lg font-bold mb-1 tracking-tight">WHISKY</h3>
@@ -579,7 +579,7 @@ export default function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.3}>
-            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[200px] flex flex-col justify-between">
+            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
               <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
               <div className="relative z-10">
                 <h3 className="text-lg font-bold mb-1 tracking-tight">CRAFT BEER</h3>
@@ -620,10 +620,10 @@ export default function Home() {
       </section>
 
       {/* ═══ EQUIPMENT ═══ */}
-      <section id="equipment" className="py-32 border-y border-white/5">
+      <section id="equipment" className="py-16 md:py-32 border-y border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
               <div>
                 <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">Our Gear</span>
                 <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">Equipment</h2>
@@ -677,7 +677,7 @@ export default function Home() {
       </section>
 
       {/* ═══ MARQUEE 2 ═══ */}
-      <div className="py-4 border-y border-white/5">
+      <div className="py-2 md:py-4 border-y border-white/5">
         <Marquee speed={25}>
           <span className="text-7xl md:text-9xl font-playfair font-black uppercase text-white/[0.02] flex items-center gap-16">
             <span>ROCK</span><span className="italic text-brand-gold/[0.08]">VINYL</span>
@@ -689,10 +689,10 @@ export default function Home() {
       </div>
 
       {/* ═══ EVENTS ═══ */}
-      <section id="schedule" className="py-32">
+      <section id="schedule" className="py-16 md:py-32">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
               <div>
                 <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">What&apos;s On</span>
                 <h2 className="text-5xl md:text-7xl font-playfair font-bold">Events<br />& Live</h2>
@@ -767,7 +767,7 @@ export default function Home() {
       </section>
 
       {/* ═══ GALLERY ═══ */}
-      <section id="gallery" className="py-32 border-t border-white/5">
+      <section id="gallery" className="py-16 md:py-32 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
@@ -787,11 +787,11 @@ export default function Home() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer id="access" className="pt-32 pb-12 border-t border-white/5">
+      <footer id="access" className="pt-16 md:pt-32 pb-12 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-20 mb-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 mb-10 md:mb-10 md:mb-20">
             <ScrollReveal direction="right">
-              <div className="space-y-10">
+              <div className="space-y-6 md:space-y-10">
                 <div>
                   <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">Find Us</span>
                   <h2 className="text-4xl md:text-6xl font-playfair font-bold leading-[0.9]">Locate<br />Us<span className="text-brand-gold">.</span></h2>
