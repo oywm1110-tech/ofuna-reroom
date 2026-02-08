@@ -1,7 +1,7 @@
 ﻿@import "tailwindcss";
 
 * {
-  cursor: none;
+  cursor: auto;
 }
 
 @media (max-width: 768px) {
