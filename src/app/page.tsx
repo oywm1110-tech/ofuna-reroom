@@ -517,7 +517,7 @@ export default function Home() {
               <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
             </div>
             <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-              レコードとウィスキー。最高の音と酒を、大船の地下で。
+              音楽好きが集まる場所。レコード、CDJ、ライブ——好きな音を語れる仲間がここにいる。
             </p>
           </div>
         </ScrollReveal>
@@ -797,9 +797,9 @@ export default function Home() {
                   <h2 className="text-4xl md:text-6xl font-playfair font-bold leading-[0.9]">Locate<br />Us<span className="text-brand-gold">.</span></h2>
                 </div>
                 <div className="space-y-4 text-white/50 text-lg leading-relaxed">
-                  <p>〒247-0056<br />神奈川県鎌倉市大船 X-X-X</p>
-                  <p className="text-brand-gold font-bold text-base tracking-wider">OFUNA RE:ROOM B1F</p>
-                  <p className="text-sm italic text-white/30">大船駅から徒歩3分、路地裏の秘密基地。</p>
+                  <p>〒247-0056<br />神奈川県鎌倉市大船 1-20-5 エスポワール7, 4F</p>
+                  <p className="text-brand-gold font-bold text-base tracking-wider">OFUNA RE:ROOM 4F</p>
+                  <p className="text-sm italic text-white/30">大船駅東口から徒歩3分</p>
                 </div>
 
                 <div className="glass-panel p-6 space-y-4">
@@ -821,7 +821,7 @@ export default function Home() {
                   <a href="https://www.facebook.com/ofuna.reroom/" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
                     <Facebook className="w-4 h-4" /> Facebook
                   </a>
-                  <a href="https://maps.google.com/?q=35.3533,139.5312" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
+                  <a href="https://map.yahoo.co.jp/v3/place/LoTzc64j59Q" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
                     <MapPin className="w-4 h-4" /> Google Maps
                   </a>
                 </div>
@@ -833,13 +833,13 @@ export default function Home() {
                 <div className="aspect-video glass-panel overflow-hidden relative group rounded-2xl">
                   <div className="absolute inset-0 bg-brand-black/50 z-10 group-hover:bg-brand-black/20 transition-colors duration-700" />
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9213!2d139.5312!3d35.3533!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDIxJzExLjkiTiAxMznCsDMxJzUyLjMiRQ!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9!2d139.5335!3d35.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60184e1c1b5b0f07%3A0x0!2z5aSn6Ii5MS0yMC01!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
                     className="w-full h-full grayscale contrast-125 group-hover:grayscale-0 transition-all duration-1000"
                     loading="lazy"
                   />
                 </div>
                 <a
-                  href="https://maps.google.com/?q=35.3533,139.5312"
+                  href="https://map.yahoo.co.jp/v3/place/LoTzc64j59Q"
                   target="_blank"
                   rel="noopener noreferrer"
                   data-hover
@@ -847,7 +847,7 @@ export default function Home() {
                 >
                   <div className="flex items-center gap-3">
                     <MapPin className="w-4 h-4 text-brand-gold" />
-                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">大船駅からのルートを確認</span>
+                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">地図アプリで開く</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-brand-gold transition-colors" />
                 </a>
@@ -866,7 +866,7 @@ export default function Home() {
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full bg-brand-gold text-black font-bold text-sm tracking-widest uppercase hover:bg-white transition-colors flex items-center gap-2">
                   <Instagram className="w-4 h-4" /> DMでお問い合わせ
                 </a>
-                <a href="https://maps.google.com/?q=35.3533,139.5312" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full border border-white/20 font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all flex items-center gap-2">
+                <a href="https://map.yahoo.co.jp/v3/place/LoTzc64j59Q" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full border border-white/20 font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-black transition-all flex items-center gap-2">
                   <MapPin className="w-4 h-4" /> アクセス
                 </a>
               </div>
