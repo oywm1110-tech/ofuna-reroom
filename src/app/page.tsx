@@ -753,9 +753,7 @@ export default function Home() {
               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">About</span>
               <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
             </div>
-            <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-              音楽好きが集まる場所。レコード、CDJ、ライブ——好きな音を語れる仲間がここにいる。
-            </p>
+
           </div>
         </ScrollReveal>
 
