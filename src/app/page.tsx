@@ -618,26 +618,6 @@ export default function Home() {
         </Marquee>
       </div>
 
-      {/* ═══ STATS ═══ */}
-      <section className="max-w-7xl mx-auto px-6 py-10 md:py-20">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-          {[
-            { value: 2000, suffix: "+", label: "Vinyl Records" },
-            { value: 50, suffix: "+", label: "Whisky Selection" },
-            { value: 3, suffix: "min", label: "From Station" },
-            { value: 15, suffix: "yrs", label: "Of Rock & Soul" },
-          ].map((stat, i) => (
-            <ScrollReveal key={i} delay={i * 0.1}>
-              <div className="text-center md:text-left">
-                <div className="text-4xl md:text-5xl text-brand-gold">
-                  <Counter value={stat.value} suffix={stat.suffix} />
-                </div>
-                <p className="text-[10px] tracking-[0.3em] uppercase text-white/40 mt-2">{stat.label}</p>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-      </section>
 
 
       {/* ═══ DRINK MENU ═══ */}
