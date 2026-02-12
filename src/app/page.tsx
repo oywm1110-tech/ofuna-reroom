@@ -411,13 +411,18 @@ export default function Home() {
             >
               Established in Ofuna
             </motion.span>
-            <h1 className="text-[15vw] md:text-[11vw] font-playfair font-black leading-[0.85] tracking-tighter uppercase">
-              <AnimatedTitle text="Ofuna" />
-              <br />
-              <span className="text-brand-gold italic">
-                <AnimatedTitle text="Re:Room" />
-              </span>
-            </h1>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, rotate: -180 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ delay: 0.3, duration: 1.2, ease: "easeOut" }}
+              className="flex justify-center"
+            >
+              <img
+                src="https://www.genspark.ai/api/files/s/ImAxozuT"
+                alt="Ofuna Re:Room Logo"
+                className="w-[70vw] md:w-[35vw] lg:w-[28vw] max-w-[400px] rounded-full"
+              />
+            </motion.div>
             <motion.div
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "100%" }}
@@ -875,7 +880,7 @@ export default function Home() {
 
           <div className="pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
+              <img src="https://www.genspark.ai/api/files/s/ImAxozuT" alt="Re:Room" className="h-10 w-10 rounded-full" /><div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
               <div className="text-[9px] tracking-[0.4em] uppercase text-white/30">© 2026 OFUNA RE:ROOM. ALL RIGHTS RESERVED.</div>
               <div className="flex gap-6">
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="text-white/40 hover:text-brand-gold transition-colors">
