@@ -1038,8 +1038,8 @@ export default function Home() {
           <ScrollReveal>
             <div className="glass-panel p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8 mb-20 border-brand-gold/10">
               <div>
-                <h3 className="text-2xl md:text-3xl font-playfair font-bold mb-2">今夜、会いに行く。</h3>
-                <p className="text-white/40 text-sm">予約不要・お一人様歓迎・初めての方もお気軽に</p>
+                <h3 className="text-2xl md:text-3xl font-playfair font-bold mb-2">Come Find Your Sound.</h3>
+                <p className="text-white/40 text-sm">No reservation needed. Walk in, grab a drink, and let the music do the rest.</p>
               </div>
               <div className="flex flex-wrap gap-3">
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-8 py-3 rounded-full bg-brand-gold text-black font-bold text-sm tracking-widest uppercase hover:bg-white transition-colors flex items-center gap-2">
