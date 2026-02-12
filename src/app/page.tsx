@@ -639,18 +639,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ PARALLAX BAND 1 ═══ */}
-      <ParallaxBand src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2000&auto=format&fit=crop">
-        <motion.p
-          initial={{ opacity: 0, letterSpacing: "0em" }}
-          whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="text-xl md:text-3xl font-playfair italic text-white/80 text-center px-6"
-        >
-          Where Music Lovers Belong
-        </motion.p>
-      </ParallaxBand>
 
       {/* ═══ DRINK MENU ═══ */}
       <SectionDivider />
@@ -847,18 +835,6 @@ export default function Home() {
       </ParallaxSection>
 
 
-      {/* ═══ PARALLAX BAND 2 ═══ */}
-      <ParallaxBand src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?q=80&w=2000&auto=format&fit=crop">
-        <motion.p
-          initial={{ opacity: 0, letterSpacing: "0em" }}
-          whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="text-xl md:text-3xl font-playfair italic text-white/80 text-center px-6"
-        >
-          Analog Meets Digital
-        </motion.p>
-      </ParallaxBand>
 
       {/* ═══ EVENTS ═══ */}
       <SectionDivider />
@@ -939,18 +915,6 @@ export default function Home() {
         </div>
       </ParallaxSection>
 
-      {/* ═══ PARALLAX BAND 3 ═══ */}
-      <ParallaxBand src="https://images.unsplash.com/photo-1501612780327-45045538702b?q=80&w=2000&auto=format&fit=crop">
-        <motion.p
-          initial={{ opacity: 0, letterSpacing: "0em" }}
-          whileInView={{ opacity: 1, letterSpacing: "0.3em" }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5 }}
-          className="text-xl md:text-3xl font-playfair italic text-white/80 text-center px-6"
-        >
-          Every Night Tells a Story
-        </motion.p>
-      </ParallaxBand>
 
       {/* ═══ GALLERY ═══ */}
       <section id="gallery" className="py-16 md:py-32 border-t border-white/5">
