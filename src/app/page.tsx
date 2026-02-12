@@ -31,6 +31,62 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+
+/* ─── Parallax Section ─── */
+function ParallaxSection({ children, className, speed = 0.3, id }: { children: React.ReactNode; className?: string; speed?: number; id?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [80 * speed, -80 * speed]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.4, 1, 1, 0.4]);
+  return (
+    <section ref={ref} id={id} className={className}>
+      <motion.div style={{ y, opacity }}>
+        {children}
+      </motion.div>
+    </section>
+  );
+}
+
+/* ─── Section Divider ─── */
+function SectionDivider() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const scaleX = useTransform(scrollYProgress, [0, 0.5, 1], [0, 1, 0]);
+  const glowOpacity = useTransform(scrollYProgress, [0, 0.5, 1], [0, 0.6, 0]);
+  return (
+    <div ref={ref} className="relative py-8 md:py-16 flex items-center justify-center overflow-hidden">
+      <motion.div
+        style={{ scaleX, opacity: glowOpacity }}
+        className="h-[1px] w-full max-w-4xl bg-gradient-to-r from-transparent via-brand-gold/50 to-transparent"
+      />
+      <motion.div
+        style={{ scaleX, opacity: glowOpacity }}
+        className="absolute h-[30px] w-full max-w-2xl bg-gradient-to-r from-transparent via-brand-gold/5 to-transparent blur-xl"
+      />
+    </div>
+  );
+}
+
+/* ─── Floating Background Orbs ─── */
+function FloatingOrbs() {
+  const { scrollYProgress } = useScroll();
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -600]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -400]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -800]);
+  return (
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+      <motion.div style={{ y: y1 }} className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full bg-brand-gold/[0.02] blur-[120px]" />
+      <motion.div style={{ y: y2 }} className="absolute top-[50%] right-[5%] w-[400px] h-[400px] rounded-full bg-red-500/[0.015] blur-[100px]" />
+      <motion.div style={{ y: y3 }} className="absolute top-[80%] left-[30%] w-[600px] h-[600px] rounded-full bg-brand-gold/[0.015] blur-[150px]" />
+    </div>
+  );
+}
 import { VinylPlayer } from "@/components/ui/vinyl-player";
 import { Waveform } from "@/components/ui/waveform";
 import { cn } from "@/lib/utils";
@@ -380,6 +436,7 @@ export default function Home() {
     <main className="min-h-screen bg-brand-black text-white">
       <CustomCursor />
       <ScrollProgress />
+      <FloatingOrbs />
       <NoiseOverlay />
       <FloatingNav />
       <MobileNav />
@@ -523,7 +580,8 @@ export default function Home() {
       </section>
 
       {/* ═══ EXPERIENCE ═══ */}
-      <section id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
+      <SectionDivider />
+      <ParallaxSection id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
         <ScrollReveal>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
             <div>
@@ -631,10 +689,11 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+      </ParallaxSection>
 
       {/* ═══ EQUIPMENT ═══ */}
-      <section id="equipment" className="py-16 md:py-32 border-y border-white/5">
+      <SectionDivider />
+      <ParallaxSection id="equipment" className="py-16 md:py-32 border-y border-white/5" speed={0.2}>
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
@@ -688,7 +747,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </ParallaxSection>
 
       {/* ═══ MARQUEE 2 ═══ */}
       <div className="py-2 md:py-4 border-y border-white/5">
@@ -703,7 +762,8 @@ export default function Home() {
       </div>
 
       {/* ═══ EVENTS ═══ */}
-      <section id="schedule" className="py-16 md:py-32">
+      <SectionDivider />
+      <ParallaxSection id="schedule" className="py-16 md:py-32" speed={0.25}>
         <div className="max-w-7xl mx-auto px-6">
           <ScrollReveal>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
@@ -778,8 +838,9 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </div>
-      </section>
+      </ParallaxSection>
 
+      <SectionDivider />
       {/* ═══ GALLERY ═══ */}
       <section id="gallery" className="py-16 md:py-32 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
