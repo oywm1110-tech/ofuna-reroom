@@ -418,7 +418,7 @@ export default function Home() {
               className="flex justify-center"
             >
               <img
-                src="https://www.genspark.ai/api/files/s/ImAxozuT"
+                src="/logo.jpg"
                 alt="Ofuna Re:Room Logo"
                 className="w-[70vw] md:w-[35vw] lg:w-[28vw] max-w-[400px] rounded-full"
               />
@@ -880,7 +880,7 @@ export default function Home() {
 
           <div className="pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <img src="https://www.genspark.ai/api/files/s/ImAxozuT" alt="Re:Room" className="h-10 w-10 rounded-full" /><div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
+              <img src="/logo.jpg" alt="Re:Room" className="h-10 w-10 rounded-full" /><div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
               <div className="text-[9px] tracking-[0.4em] uppercase text-white/30">© 2026 OFUNA RE:ROOM. ALL RIGHTS RESERVED.</div>
               <div className="flex gap-6">
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="text-white/40 hover:text-brand-gold transition-colors">
