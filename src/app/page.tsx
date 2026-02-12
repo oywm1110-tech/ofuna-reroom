@@ -249,9 +249,10 @@ function MobileNav() {
             {[
               { label: "Top", href: "#" },
               { label: "Menu", href: "#menu" },
-              { label: "Equipment", href: "#equipment" },
+              { label: "Experience", href: "#system" },
               { label: "Events & Live", href: "#schedule" },
               { label: "Gallery", href: "#gallery" },
+              { label: "Equipment", href: "#equipment" },
               { label: "Access", href: "#access" },
             ].map((item) => (
               <a
@@ -301,9 +302,10 @@ function FloatingNav() {
           <div className="h-4 w-[1px] bg-white/10" />
           {[
             { label: "Menu", href: "#menu" },
-            { label: "Equipment", href: "#equipment" },
+            { label: "Experience", href: "#system" },
             { label: "Events", href: "#schedule" },
             { label: "Gallery", href: "#gallery" },
+            { label: "Equipment", href: "#equipment" },
             { label: "Access", href: "#access" },
           ].map((item) => (
             <a
@@ -650,77 +652,6 @@ export default function Home() {
         </motion.p>
       </ParallaxBand>
 
-      {/* ═══ EXPERIENCE ═══ */}
-      <SectionDivider />
-      <ParallaxSection id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
-        <ScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-20">
-            <div>
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">About</span>
-              <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
-            </div>
-            <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-              音楽好きが集まる場所。レコード、CDJ、ライブ——好きな音を語れる仲間がここにいる。
-            </p>
-          </div>
-        </ScrollReveal>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
-          <ScrollReveal>
-            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[280px] md:min-h-[350px]">
-              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-1000 scale-110 group-hover:scale-100" />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent z-[1]" />
-              <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center mb-8">
-                  <Volume2 className="w-6 h-6 text-brand-gold" />
-                </div>
-                <h3 className="text-3xl md:text-4xl font-playfair font-bold mb-4 italic leading-tight">Uncompromising<br />Sound</h3>
-                <p className="text-white/50 leading-relaxed max-w-sm">
-                  好きなレコードをリクエストしてください。最高品質の音響システムで、アーティストの吐息まで再現します。
-                </p>
-              </div>
-              <div className="relative z-10 pt-12 flex items-center justify-between">
-                <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-brand-gold/80">Sound System / 70s-90s Rock</span>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <div className="grid grid-rows-2 gap-4 md:gap-5">
-            <ScrollReveal delay={0.1}>
-              <div className="glass-panel p-8 flex items-center gap-6 h-full">
-                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="w-5 h-5 text-brand-gold" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Opening Hours</h3>
-                  <p className="text-white/50 text-sm">
-                    <span className="text-white font-oswald text-lg">19:00</span>
-                    <span className="mx-2 text-white/30">→</span>
-                    <span className="text-white font-oswald text-lg">02:00</span>
-                    <span className="ml-3 text-[10px] text-white/30 uppercase tracking-widest">Closed on Sundays</span>
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-
-            <ScrollReveal delay={0.2}>
-              <div className="glass-panel p-8 flex items-center gap-6 h-full">
-                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
-                  <Music2 className="w-5 h-5 text-brand-gold" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Music Community</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">
-                    ジャンル問わず音楽好きが集まるコミュニティ。<br />レコード持ち込みOK、リクエスト自由。
-                  </p>
-                </div>
-              </div>
-            </ScrollReveal>
-          </div>
-        </div>
-      </ParallaxSection>
-
-
       {/* ═══ DRINK MENU ═══ */}
       <SectionDivider />
       <section id="menu" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
@@ -845,63 +776,76 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ EQUIPMENT ═══ */}
+      {/* ═══ EXPERIENCE ═══ */}
       <SectionDivider />
-      <ParallaxSection id="equipment" className="py-16 md:py-32 border-y border-white/5" speed={0.2}>
-        <div className="max-w-7xl mx-auto px-6">
+      <ParallaxSection id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
+        <ScrollReveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-20">
+            <div>
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">About</span>
+              <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
+            </div>
+            <p className="max-w-sm text-white/40 text-sm leading-relaxed">
+              音楽好きが集まる場所。レコード、CDJ、ライブ——好きな音を語れる仲間がここにいる。
+            </p>
+          </div>
+        </ScrollReveal>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           <ScrollReveal>
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
-              <div>
-                <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">Our Gear</span>
-                <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">Equipment</h2>
+            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[280px] md:min-h-[350px]">
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-1000 scale-110 group-hover:scale-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent z-[1]" />
+              <div className="relative z-10">
+                <div className="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center mb-8">
+                  <Volume2 className="w-6 h-6 text-brand-gold" />
+                </div>
+                <h3 className="text-3xl md:text-4xl font-playfair font-bold mb-4 italic leading-tight">Uncompromising<br />Sound</h3>
+                <p className="text-white/50 leading-relaxed max-w-sm">
+                  好きなレコードをリクエストしてください。最高品質の音響システムで、アーティストの吐息まで再現します。
+                </p>
               </div>
-              <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-                レコードもCDJも。アナログとデジタルが融合する、音楽のための空間。
-              </p>
+              <div className="relative z-10 pt-12 flex items-center justify-between">
+                <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-brand-gold/80">Sound System / 70s-90s Rock</span>
+              </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {[
-              {
-                icon: Disc3,
-                title: "Turntable",
-                subtitle: "Vinyl Player",
-                description: "レコードの温かみあるサウンドをお楽しみください。お気に入りのレコードをお持ち込みいただくこともできます。",
-                specs: "Technics SL-1200 Series",
-              },
-              {
-                icon: Music2,
-                title: "CDJ System",
-                subtitle: "Digital DJ",
-                description: "CDJを完備。DJイベントやパーティーにも対応。デジタルの利便性とクオリティを両立。",
-                specs: "Pioneer CDJ Series / DJM Mixer",
-              },
-              {
-                icon: Mic2,
-                title: "Live Stage",
-                subtitle: "Performance",
-                description: "ライブ演奏も可能なステージを完備。アコースティックからバンドまで、様々なパフォーマンスに対応。",
-                specs: "PA System / Microphones / Monitors",
-              },
-            ].map((item, i) => (
-              <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="glass-panel p-8 md:p-10 group hover:bg-white/[0.06] transition-all duration-500 h-full flex flex-col">
-                  <div className="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all duration-500">
-                    <item.icon className="w-6 h-6 text-brand-gold group-hover:text-black transition-colors" />
-                  </div>
-                  <h3 className="text-2xl font-playfair font-bold mb-1">{item.title}</h3>
-                  <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-gold/60 mb-4">{item.subtitle}</p>
-                  <p className="text-white/40 text-sm leading-relaxed flex-1">{item.description}</p>
-                  <div className="mt-6 pt-4 border-t border-white/5">
-                    <p className="text-[10px] text-white/30 tracking-widest uppercase">{item.specs}</p>
-                  </div>
+          <div className="grid grid-rows-2 gap-4 md:gap-5">
+            <ScrollReveal delay={0.1}>
+              <div className="glass-panel p-8 flex items-center gap-6 h-full">
+                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-brand-gold" />
                 </div>
-              </ScrollReveal>
-            ))}
+                <div>
+                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Opening Hours</h3>
+                  <p className="text-white/50 text-sm">
+                    <span className="text-white font-oswald text-lg">19:00</span>
+                    <span className="mx-2 text-white/30">→</span>
+                    <span className="text-white font-oswald text-lg">02:00</span>
+                    <span className="ml-3 text-[10px] text-white/30 uppercase tracking-widest">Closed on Sundays</span>
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <div className="glass-panel p-8 flex items-center gap-6 h-full">
+                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                  <Music2 className="w-5 h-5 text-brand-gold" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Music Community</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">
+                    ジャンル問わず音楽好きが集まるコミュニティ。<br />レコード持ち込みOK、リクエスト自由。
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </ParallaxSection>
+
 
       {/* ═══ PARALLAX BAND 2 ═══ */}
       <ParallaxBand src="https://images.unsplash.com/photo-1571330735066-03aaa9429d89?q=80&w=2000&auto=format&fit=crop">
@@ -915,18 +859,6 @@ export default function Home() {
           Analog Meets Digital
         </motion.p>
       </ParallaxBand>
-
-      {/* ═══ MARQUEE 2 ═══ */}
-      <div className="py-2 md:py-4 border-y border-white/5">
-        <Marquee speed={25}>
-          <span className="text-7xl md:text-9xl font-playfair font-black uppercase text-white/[0.02] flex items-center gap-16">
-            <span>ROCK</span><span className="italic text-brand-gold/[0.08]">VINYL</span>
-            <span>LIVE</span><span className="italic text-brand-gold/[0.08]">CDJ</span>
-            <span>WHISKY</span><span className="italic text-brand-gold/[0.08]">SOUL</span>
-            <span>OFUNA</span><span className="italic text-brand-gold/[0.08]">GROOVE</span>
-          </span>
-        </Marquee>
-      </div>
 
       {/* ═══ EVENTS ═══ */}
       <SectionDivider />
@@ -1039,6 +971,76 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
+
+      {/* ═══ MARQUEE 2 ═══ */}
+      <div className="py-2 md:py-4 border-y border-white/5">
+        <Marquee speed={25}>
+          <span className="text-7xl md:text-9xl font-playfair font-black uppercase text-white/[0.02] flex items-center gap-16">
+            <span>ROCK</span><span className="italic text-brand-gold/[0.08]">VINYL</span>
+            <span>LIVE</span><span className="italic text-brand-gold/[0.08]">CDJ</span>
+            <span>WHISKY</span><span className="italic text-brand-gold/[0.08]">SOUL</span>
+            <span>OFUNA</span><span className="italic text-brand-gold/[0.08]">GROOVE</span>
+          </span>
+        </Marquee>
+      </div>
+
+      {/* ═══ EQUIPMENT ═══ */}
+      <SectionDivider />
+      <ParallaxSection id="equipment" className="py-16 md:py-32 border-y border-white/5" speed={0.2}>
+        <div className="max-w-7xl mx-auto px-6">
+          <ScrollReveal>
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
+              <div>
+                <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">Our Gear</span>
+                <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">Equipment</h2>
+              </div>
+              <p className="max-w-sm text-white/40 text-sm leading-relaxed">
+                レコードもCDJも。アナログとデジタルが融合する、音楽のための空間。
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {[
+              {
+                icon: Disc3,
+                title: "Turntable",
+                subtitle: "Vinyl Player",
+                description: "レコードの温かみあるサウンドをお楽しみください。お気に入りのレコードをお持ち込みいただくこともできます。",
+                specs: "Technics SL-1200 Series",
+              },
+              {
+                icon: Music2,
+                title: "CDJ System",
+                subtitle: "Digital DJ",
+                description: "CDJを完備。DJイベントやパーティーにも対応。デジタルの利便性とクオリティを両立。",
+                specs: "Pioneer CDJ Series / DJM Mixer",
+              },
+              {
+                icon: Mic2,
+                title: "Live Stage",
+                subtitle: "Performance",
+                description: "ライブ演奏も可能なステージを完備。アコースティックからバンドまで、様々なパフォーマンスに対応。",
+                specs: "PA System / Microphones / Monitors",
+              },
+            ].map((item, i) => (
+              <ScrollReveal key={i} delay={i * 0.15}>
+                <div className="glass-panel p-8 md:p-10 group hover:bg-white/[0.06] transition-all duration-500 h-full flex flex-col">
+                  <div className="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all duration-500">
+                    <item.icon className="w-6 h-6 text-brand-gold group-hover:text-black transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-playfair font-bold mb-1">{item.title}</h3>
+                  <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-brand-gold/60 mb-4">{item.subtitle}</p>
+                  <p className="text-white/40 text-sm leading-relaxed flex-1">{item.description}</p>
+                  <div className="mt-6 pt-4 border-t border-white/5">
+                    <p className="text-[10px] text-white/30 tracking-widest uppercase">{item.specs}</p>
+                  </div>
+                </div>
+              </ScrollReveal>
+            ))}
+          </div>
+        </div>
+      </ParallaxSection>
 
       {/* ═══ FOOTER ═══ */}
       <footer id="access" className="pt-16 md:pt-32 pb-12 border-t border-white/5">
