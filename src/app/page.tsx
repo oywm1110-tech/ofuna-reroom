@@ -248,9 +248,8 @@ function MobileNav() {
             </div>
             {[
               { label: "Top", href: "#" },
-              { label: "Experience", href: "#system" },
-              { label: "Equipment", href: "#equipment" },
               { label: "Menu", href: "#menu" },
+              { label: "Equipment", href: "#equipment" },
               { label: "Events & Live", href: "#schedule" },
               { label: "Gallery", href: "#gallery" },
               { label: "Access", href: "#access" },
@@ -301,9 +300,8 @@ function FloatingNav() {
           </span>
           <div className="h-4 w-[1px] bg-white/10" />
           {[
-            { label: "Experience", href: "#system" },
-            { label: "Equipment", href: "#equipment" },
             { label: "Menu", href: "#menu" },
+            { label: "Equipment", href: "#equipment" },
             { label: "Events", href: "#schedule" },
             { label: "Gallery", href: "#gallery" },
             { label: "Access", href: "#access" },
@@ -656,9 +654,9 @@ export default function Home() {
       <SectionDivider />
       <ParallaxSection id="system" className="max-w-7xl mx-auto px-6 py-16 md:py-32">
         <ScrollReveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-10 md:mb-20">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-20">
             <div>
-              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">What We Offer</span>
+              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">About</span>
               <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">The<br />Experience</h2>
             </div>
             <p className="max-w-sm text-white/40 text-sm leading-relaxed">
@@ -667,9 +665,9 @@ export default function Home() {
           </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-5">
-          <ScrollReveal className="md:col-span-2 md:row-span-2">
-            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[280px] md:min-h-[400px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+          <ScrollReveal>
+            <div className="h-full glass-panel p-10 md:p-12 flex flex-col justify-between group overflow-hidden relative min-h-[280px] md:min-h-[350px]">
               <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center opacity-0 group-hover:opacity-15 transition-opacity duration-1000 scale-110 group-hover:scale-100" />
               <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-brand-black/80 to-transparent z-[1]" />
               <div className="relative z-10">
@@ -683,84 +681,42 @@ export default function Home() {
               </div>
               <div className="relative z-10 pt-12 flex items-center justify-between">
                 <span className="text-[9px] font-bold tracking-[0.3em] uppercase text-brand-gold/80">Sound System / 70s-90s Rock</span>
-                <div data-hover className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-brand-gold group-hover:border-brand-gold group-hover:text-black transition-all duration-500">
-                  <ArrowUpRight className="w-5 h-5" />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-rows-2 gap-4 md:gap-5">
+            <ScrollReveal delay={0.1}>
+              <div className="glass-panel p-8 flex items-center gap-6 h-full">
+                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                  <Clock className="w-5 h-5 text-brand-gold" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Opening Hours</h3>
+                  <p className="text-white/50 text-sm">
+                    <span className="text-white font-oswald text-lg">19:00</span>
+                    <span className="mx-2 text-white/30">→</span>
+                    <span className="text-white font-oswald text-lg">02:00</span>
+                    <span className="ml-3 text-[10px] text-white/30 uppercase tracking-widest">Closed on Sundays</span>
+                  </p>
                 </div>
               </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
 
-          <ScrollReveal delay={0.1} className="md:col-span-2">
-            <div className="glass-panel p-8 md:p-10 h-full">
-              <div className="flex items-center gap-3 mb-8">
-                <div className="w-8 h-8 rounded-lg bg-brand-gold/10 flex items-center justify-center">
-                  <Music2 className="w-4 h-4 text-brand-gold" />
+            <ScrollReveal delay={0.2}>
+              <div className="glass-panel p-8 flex items-center gap-6 h-full">
+                <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
+                  <Music2 className="w-5 h-5 text-brand-gold" />
                 </div>
-                <h3 className="text-sm font-bold tracking-[0.3em] uppercase">Table System</h3>
-              </div>
-              <div className="space-y-5">
-                <div className="flex justify-between items-end border-b border-white/5 pb-3">
-                  <span className="text-white/50">Table Charge</span>
-                  <span className="text-2xl font-oswald font-bold text-brand-gold">¥500</span>
+                <div>
+                  <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Music Community</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">
+                    ジャンル問わず音楽好きが集まるコミュニティ。<br />レコード持ち込みOK、リクエスト自由。
+                  </p>
                 </div>
-                <div className="flex justify-between items-end border-b border-white/5 pb-3">
-                  <span className="text-white/50">Music Request</span>
-                  <span className="text-2xl font-oswald font-bold text-white">FREE</span>
-                </div>
-                <p className="text-[10px] text-white/30 mt-4 italic">* No tax / Service charge included</p>
               </div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.2}>
-            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-wine/80 to-brand-wine/40 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold mb-1 tracking-tight">WHISKY</h3>
-                <p className="text-xs text-white/40">Selected Malts & Bourbon</p>
-              </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥900<span className="text-base text-white/40">~</span></div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.3}>
-            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative h-full min-h-[150px] md:min-h-[200px] flex flex-col justify-between">
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/20 to-brand-gold/5 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-out" />
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold mb-1 tracking-tight">CRAFT BEER</h3>
-                <p className="text-xs text-white/40">Heartland & Bass On Tap</p>
-              </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥800<span className="text-base text-white/40">~</span></div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.15} className="md:col-span-2">
-            <div data-hover className="glass-panel p-8 group cursor-pointer overflow-hidden relative flex items-center justify-between">
-              <div className="absolute inset-0 bg-gradient-to-r from-purple-900/30 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-700 ease-out" />
-              <div className="relative z-10">
-                <h3 className="text-lg font-bold mb-1 tracking-tight">COCKTAILS & MORE</h3>
-                <p className="text-xs text-white/40">Signature Mixes / Soft Drinks / Food</p>
-              </div>
-              <div className="relative z-10 text-3xl font-oswald font-bold">¥700<span className="text-base text-white/40">~</span></div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.25} className="md:col-span-2">
-            <div className="glass-panel p-8 flex items-center gap-6">
-              <div className="w-12 h-12 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center flex-shrink-0">
-                <Clock className="w-5 h-5 text-brand-gold" />
-              </div>
-              <div>
-                <h3 className="text-sm font-bold tracking-[0.2em] uppercase mb-1">Opening Hours</h3>
-                <p className="text-white/50 text-sm">
-                  <span className="text-white font-oswald text-lg">19:00</span>
-                  <span className="mx-2 text-white/30">→</span>
-                  <span className="text-white font-oswald text-lg">02:00</span>
-                  <span className="ml-3 text-[10px] text-white/30 uppercase tracking-widest">Closed on Sundays</span>
-                </p>
-              </div>
-            </div>
-          </ScrollReveal>
+            </ScrollReveal>
+          </div>
         </div>
       </ParallaxSection>
 
