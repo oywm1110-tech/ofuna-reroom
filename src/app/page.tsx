@@ -104,9 +104,8 @@ function ParallaxBand({ src, children }: { src: string; children?: React.ReactNo
   return (
     <div ref={ref} className="relative h-[40vh] md:h-[50vh] overflow-hidden">
       <motion.div
-        style={{ y, scale }}
+        style={{ y, scale, backgroundImage: `url(${src})` }}
         className="absolute inset-[-20%] bg-cover bg-center"
-        {...{ style: { y, scale, backgroundImage: `url(${src})` } }}
       />
       <div className="absolute inset-0 bg-black/50" />
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
