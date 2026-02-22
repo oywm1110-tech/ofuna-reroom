@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ofuna-reroom.pages.dev/sitemap.xml

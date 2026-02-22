@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import {
   motion,
   useScroll,
   useTransform,
   useMotionValue,
   useSpring,
+  useReducedMotion,
   AnimatePresence,
 } from "framer-motion";
 import {
@@ -16,16 +16,14 @@ import {
   MapPin,
   ArrowUpRight,
   Music2,
-  Volume2,
   Clock,
   ChevronDown,
+  ChevronUp,
   Calendar,
   Disc3,
-  Speaker,
   Mic2,
   Menu,
   X,
-  Phone,
   ExternalLink,
   ChevronLeft,
   ChevronRight,
@@ -75,21 +73,23 @@ function SectionDivider() {
 
 /* ─── Floating Background Orbs ─── */
 function FloatingOrbs() {
+  const prefersReducedMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -600]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -400]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -800]);
+  const y1 = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -600]);
+  const y2 = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -400]);
+  const y3 = useTransform(scrollYProgress, [0, 1], prefersReducedMotion ? [0, 0] : [0, -800]);
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-      <motion.div style={{ y: y1 }} className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full bg-brand-gold/[0.04] blur-[120px]" />
-      <motion.div style={{ y: y2 }} className="absolute top-[50%] right-[5%] w-[400px] h-[400px] rounded-full bg-red-500/[0.03] blur-[100px]" />
-      <motion.div style={{ y: y3 }} className="absolute top-[80%] left-[30%] w-[600px] h-[600px] rounded-full bg-brand-gold/[0.035] blur-[150px]" />
+      <motion.div style={{ y: y1, willChange: "transform" }} className="absolute top-[20%] left-[10%] w-[500px] h-[500px] rounded-full bg-brand-gold/[0.04] blur-[120px]" />
+      <motion.div style={{ y: y2, willChange: "transform" }} className="absolute top-[50%] right-[5%] w-[400px] h-[400px] rounded-full bg-red-500/[0.03] blur-[100px]" />
+      <motion.div style={{ y: y3, willChange: "transform" }} className="absolute top-[80%] left-[30%] w-[600px] h-[600px] rounded-full bg-brand-gold/[0.035] blur-[150px]" />
     </div>
   );
 }
 import { VinylPlayer } from "@/components/ui/vinyl-player";
 import { Waveform } from "@/components/ui/waveform";
 import { cn } from "@/lib/utils";
+import { events, eventMonthLabel } from "@/data/events";
 
 
 /* ─── Parallax Image Band ─── */
@@ -162,19 +162,21 @@ function CustomCursor() {
       cursorX.set(e.clientX - 16);
       cursorY.set(e.clientY - 16);
     };
-    const addListeners = () => {
-      document.querySelectorAll("a, button, [data-hover]").forEach((el) => {
-        el.addEventListener("mouseenter", () => setHovered(true));
-        el.addEventListener("mouseleave", () => setHovered(false));
-      });
+    const onOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [data-hover]")) setHovered(true);
+    };
+    const onOut = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (target.closest("a, button, [data-hover]")) setHovered(false);
     };
     window.addEventListener("mousemove", move);
-    addListeners();
-    const observer = new MutationObserver(addListeners);
-    observer.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
     return () => {
       window.removeEventListener("mousemove", move);
-      observer.disconnect();
+      document.removeEventListener("mouseover", onOver);
+      document.removeEventListener("mouseout", onOut);
     };
   }, [cursorX, cursorY]);
 
@@ -224,6 +226,7 @@ function MobileNav() {
     <>
       <button
         onClick={() => setOpen(true)}
+        aria-label="メニューを開く"
         className="fixed top-6 right-6 z-[9991] w-12 h-12 rounded-full glass-panel flex items-center justify-center md:hidden"
         data-hover
       >
@@ -239,6 +242,7 @@ function MobileNav() {
           >
             <button
               onClick={() => setOpen(false)}
+              aria-label="メニューを閉じる"
               className="absolute top-6 right-6 w-12 h-12 rounded-full glass-panel flex items-center justify-center"
             >
               <X className="w-5 h-5" />
@@ -294,6 +298,8 @@ function FloatingNav() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: -80, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
+          role="navigation"
+          aria-label="メインナビゲーション"
           className="fixed top-6 left-1/2 -translate-x-1/2 z-[9990] glass-panel px-8 py-3 rounded-full hidden md:flex items-center gap-8 border border-white/10"
         >
           <span className="font-playfair font-bold text-sm tracking-tight">
@@ -312,7 +318,7 @@ function FloatingNav() {
               key={item.href}
               href={item.href}
               data-hover
-              className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 hover:text-brand-gold transition-colors"
+              className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/50 hover:text-brand-gold transition-colors py-2"
             >
               {item.label}
             </a>
@@ -322,7 +328,7 @@ function FloatingNav() {
             target="_blank"
             rel="noopener noreferrer"
             data-hover
-            className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-gold hover:text-black transition-all"
+            className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-gold hover:text-black transition-all"
           >
             <Instagram className="w-3.5 h-3.5" />
           </a>
@@ -390,11 +396,12 @@ function AnimatedTitle({ text, className }: { text: string; className?: string }
 
 /* ─── Marquee ─── */
 function Marquee({ children, speed = 30 }: { children: React.ReactNode; speed?: number }) {
+  const prefersReducedMotion = useReducedMotion();
   return (
     <div className="overflow-hidden whitespace-nowrap">
       <motion.div
         className="inline-flex gap-12"
-        animate={{ x: ["0%", "-50%"] }}
+        animate={prefersReducedMotion ? {} : { x: ["0%", "-50%"] }}
         transition={{ duration: speed, repeat: Infinity, ease: "linear" }}
       >
         {children}
@@ -409,12 +416,13 @@ function Gallery() {
   const [current, setCurrent] = useState(0);
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
+  // TODO: 実際の店内写真に差し替え（public/images/gallery/ に配置して URL を変更）
   const images = [
-    { url: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=800&auto=format&fit=crop", caption: "DJ Night" },
-    { url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=800&auto=format&fit=crop", caption: "Vinyl Collection" },
-    { url: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=800&auto=format&fit=crop", caption: "Live Performance" },
-    { url: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=800&auto=format&fit=crop", caption: "Weekend Vibes" },
-    { url: "https://images.unsplash.com/photo-1508854710579-5cecc3a9ff17?q=80&w=800&auto=format&fit=crop", caption: "Sound System" },
+    { url: "/images/gallery/dj-night.webp", caption: "DJ Night" },
+    { url: "/images/gallery/vinyl-collection.webp", caption: "Vinyl Collection" },
+    { url: "/images/gallery/live-performance.webp", caption: "Live Performance" },
+    { url: "/images/gallery/weekend-vibes.webp", caption: "Weekend Vibes" },
+    { url: "/images/gallery/sound-system.webp", caption: "Sound System" },
   ];
   const next = () => setCurrent((c) => (c + 1) % images.length);
   const prev = () => setCurrent((c) => (c - 1 + images.length) % images.length);
@@ -451,7 +459,7 @@ function Gallery() {
             key={i}
             className={"absolute inset-0 transition-all duration-700 " + (i === current ? "opacity-100 scale-100" : "opacity-0 scale-105")}
           >
-            <img src={img.url} alt={img.caption} className="w-full h-full object-cover pointer-events-none" />
+            <img src={img.url} alt={img.caption} width={800} height={450} loading="lazy" className="w-full h-full object-cover pointer-events-none" />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent" />
           </div>
         ))}
@@ -459,10 +467,10 @@ function Gallery() {
           <p className="text-sm font-bold tracking-widest uppercase text-brand-gold">{images[current].caption}</p>
           <p className="text-xs text-white/40 mt-1">{current + 1} / {images.length}</p>
         </div>
-        <button onClick={(e) => { e.stopPropagation(); prev(); }} className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onClick={(e) => { e.stopPropagation(); prev(); }} aria-label="前の画像" className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <ChevronLeft className="w-5 h-5" />
         </button>
-        <button onClick={(e) => { e.stopPropagation(); next(); }} className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+        <button onClick={(e) => { e.stopPropagation(); next(); }} aria-label="次の画像" className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full glass-panel flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
           <ChevronRight className="w-5 h-5" />
         </button>
       </div>
@@ -471,10 +479,74 @@ function Gallery() {
           <button
             key={i}
             onClick={() => setCurrent(i)}
-            className={"rounded-full transition-all h-2 " + (i === current ? "bg-brand-gold w-6" : "bg-white/20 w-2")}
-          />
+            aria-label={`画像 ${i + 1} を表示`}
+            className={"rounded-full transition-all min-h-[44px] min-w-[44px] flex items-center justify-center " + (i === current ? "" : "")}
+          >
+            <span className={"block rounded-full transition-all h-2 " + (i === current ? "bg-brand-gold w-6" : "bg-white/20 w-2")} />
+          </button>
         ))}
       </div>
+    </div>
+  );
+}
+
+/* ─── Scroll to Top ─── */
+function ScrollToTop() {
+  const { scrollY } = useScroll();
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    return scrollY.on("change", (v) => setVisible(v > 600));
+  }, [scrollY]);
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.8 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          aria-label="トップへ戻る"
+          className="fixed bottom-8 right-8 z-[9990] w-12 h-12 rounded-full bg-brand-gold/90 text-black flex items-center justify-center shadow-lg hover:bg-brand-gold transition-colors cursor-pointer"
+        >
+          <ChevronUp className="w-5 h-5" />
+        </motion.button>
+      )}
+    </AnimatePresence>
+  );
+}
+
+/* ─── Drink Accordion (Mobile) ─── */
+function DrinkAccordion({ title, price, children }: { title: string; price: string; children: React.ReactNode }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="md:hidden glass-panel overflow-hidden">
+      <button
+        onClick={() => setOpen(!open)}
+        className="w-full p-5 flex items-center justify-between cursor-pointer"
+      >
+        <div className="flex items-center gap-3">
+          <h3 className="text-brand-gold font-oswald font-bold text-lg tracking-widest">{title}</h3>
+          <span className="text-white/30 text-xs">{price}</span>
+        </div>
+        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.3 }}>
+          <ChevronDown className="w-5 h-5 text-white/40" />
+        </motion.div>
+      </button>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="overflow-hidden"
+          >
+            <div className="px-5 pb-5">
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -494,6 +566,9 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-brand-black text-white">
+      <a href="#menu" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[99999] focus:px-4 focus:py-2 focus:bg-brand-gold focus:text-black focus:rounded-full focus:font-bold focus:text-sm">
+        メインコンテンツへスキップ
+      </a>
       <CustomCursor />
       <ScrollProgress />
       <FloatingOrbs />
@@ -501,6 +576,7 @@ export default function Home() {
       <FloatingNav />
       <MobileNav />
       <VinylPlayer />
+      <ScrollToTop />
 
       {/* ═══ HERO ═══ */}
       <section
@@ -508,7 +584,7 @@ export default function Home() {
         className="relative h-screen w-full flex flex-col items-center justify-center px-6 overflow-hidden"
       >
         <motion.div className="absolute inset-0 z-0" style={{ scale: heroScale }}>
-          <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1470225620780-dba8ba36b745?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center grayscale opacity-25" />
+          <div className="absolute inset-0 bg-[url('/images/hero-bg.webp')] bg-cover bg-center grayscale opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-brand-black/10 via-brand-black/60 to-brand-black" />
         </motion.div>
 
@@ -538,6 +614,8 @@ export default function Home() {
                 <img
                   src="/logo.jpg"
                   alt="Ofuna Re:Room Logo"
+                  width={180}
+                  height={180}
                   className="w-full h-full object-cover scale-[1.35]"
                 />
               </div>
@@ -572,17 +650,18 @@ export default function Home() {
             <a href="#system" data-hover className="group relative px-10 py-4 overflow-hidden rounded-full border border-white/20 backdrop-blur-sm bg-white/5 hover:border-brand-gold/50 transition-all duration-500">
               <div className="absolute inset-0 bg-brand-gold/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <span className="relative z-10 text-sm font-bold tracking-widest uppercase flex items-center gap-3">
-                Explore <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                About <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
               </span>
             </a>
             <a href="#schedule" data-hover className="group relative px-10 py-4 overflow-hidden rounded-full bg-brand-gold text-black hover:bg-white transition-colors duration-500">
               <span className="relative z-10 text-sm font-bold tracking-widest uppercase flex items-center gap-3">
-                Events <Calendar className="w-4 h-4" />
+                今月のイベント <Calendar className="w-4 h-4" />
               </span>
             </a>
-            <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="group relative px-10 py-4 overflow-hidden rounded-full border border-white/20 backdrop-blur-sm bg-white/5 hover:border-brand-gold/50 transition-all duration-500">
+            <a href="#access" data-hover className="group relative px-10 py-4 overflow-hidden rounded-full border border-white/20 backdrop-blur-sm bg-white/5 hover:border-brand-gold/50 transition-all duration-500">
+              <div className="absolute inset-0 bg-brand-gold/10 translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
               <span className="relative z-10 text-sm font-bold tracking-widest uppercase flex items-center gap-3">
-                <Instagram className="w-4 h-4" /> Follow
+                <MapPin className="w-4 h-4" /> Access
               </span>
             </a>
           </motion.div>
@@ -630,13 +709,86 @@ export default function Home() {
                 <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-brand-gold block mb-4">Drink Menu</span>
                 <h2 className="text-5xl md:text-7xl font-playfair font-bold leading-[0.9]">Menu</h2>
               </div>
-              <p className="max-w-sm text-white/40 text-sm leading-relaxed">
-                All cocktails ¥500。気軽に楽しめる価格で、音楽とお酒をお楽しみください。
-              </p>
+              <div className="max-w-sm text-white/40 text-sm leading-relaxed space-y-2">
+                <p>All cocktails ¥500。気軽に楽しめる価格で、音楽とお酒をお楽しみください。</p>
+                <p className="text-brand-gold/70 text-xs font-bold tracking-wider uppercase">No cover charge</p>
+              </div>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {/* Mobile: Accordion */}
+          <div className="flex flex-col gap-3 md:hidden">
+            <DrinkAccordion title="COCKTAIL" price="¥500">
+              <div className="space-y-4">
+                <div>
+                  <h4 className="text-white/70 text-[11px] font-bold tracking-widest mb-2">GIN</h4>
+                  <div className="space-y-1 text-white/50 text-sm">
+                    <p>ジン・トニック</p><p>ジン・バック</p><p>ジン・スリング</p><p>ブラッディ・サム</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-white/70 text-[11px] font-bold tracking-widest mb-2">VODKA</h4>
+                  <div className="space-y-1 text-white/50 text-sm">
+                    <p>ウォッカ・トニック</p><p>グレイハウンド</p><p>モスコー・ミュール</p><p>ゴッド・マザー</p><p>ブラック・ルシアン</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-white/70 text-[11px] font-bold tracking-widest mb-2">RUM</h4>
+                  <div className="space-y-1 text-white/50 text-sm">
+                    <p>キューバ・リバー</p><p>ラム・クーラー</p><p>ゴールデン・フレンド</p>
+                  </div>
+                </div>
+                <div>
+                  <h4 className="text-white/70 text-[11px] font-bold tracking-widest mb-2">TEQUILA</h4>
+                  <div className="space-y-1 text-white/50 text-sm">
+                    <p>テコニック</p><p>テキーラ・グレープフルーツ</p>
+                  </div>
+                </div>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="WINE" price="¥500">
+              <div className="text-white/50 text-sm"><p>DEL SUR 赤・白</p></div>
+            </DrinkAccordion>
+            <DrinkAccordion title="LIQUEUR" price="¥500">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>カルーア</p><p>マリブ</p><p>アマレット</p><p>パッソア（パッションフルーツ）</p><p>イエガー</p>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="WHISKEY" price="¥700">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>I.W.ハーパー</p><p>フォア・ローゼズ</p><p>ワイルド・ターキー</p><p>ジャック・ダニエル</p><p>カティ・サーク</p><p>ジェイムソン</p>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="焼酎" price="¥600">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>いいちご溶岩（麦）</p><p>二階堂（麦）</p><p>黒霧島（芋）</p><p>れんと</p>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="キンミヤ" price="¥500">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>コーヒー豆乳割り</p><p>紅茶豆乳割り</p><p>ウーロン茶割り</p><p>紅茶割り</p>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="生ビール" price="¥700">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>一番搾り</p><p>シャンディ・ガフ</p><p>レッド・アイ</p>
+              </div>
+            </DrinkAccordion>
+            <DrinkAccordion title="瓶ビール" price="¥750">
+              <div className="text-white/50 text-sm"><p>ハートランド</p></div>
+            </DrinkAccordion>
+            <DrinkAccordion title="ハイボール" price="¥500">
+              <div className="text-white/50 text-sm"><p>ホワイト・ホース</p></div>
+            </DrinkAccordion>
+            <DrinkAccordion title="SOFT DRINK" price="¥500">
+              <div className="space-y-1 text-white/50 text-sm">
+                <p>コカ・コーラ</p><p>ジンジャー・エール</p>
+              </div>
+            </DrinkAccordion>
+          </div>
+
+          {/* Desktop: 3-column grid */}
+          <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <ScrollReveal delay={0}>
               <div className="glass-panel p-6 md:p-8 h-full">
                 <h3 className="text-brand-gold font-oswald font-bold text-lg tracking-widest mb-1">COCKTAIL</h3>
@@ -804,7 +956,7 @@ export default function Home() {
                 <h2 className="text-5xl md:text-7xl font-playfair font-bold">Events<br />& Live</h2>
               </div>
               <div className="flex flex-col items-end gap-2">
-                <span className="text-brand-gold font-oswald text-2xl tracking-widest">FEB 2026</span>
+                <span className="text-brand-gold font-oswald text-2xl tracking-widest">{eventMonthLabel}</span>
                 <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="text-[10px] text-white/40 tracking-widest uppercase flex items-center gap-1 hover:text-brand-gold transition-colors">
                   <Instagram className="w-3 h-3" /> Check Instagram for updates
                 </a>
@@ -813,11 +965,7 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid gap-3">
-            {[
-              { date: "02.14", day: "FRI", title: "VALENTINE ROCK NIGHT", dj: "Resident DJ", badge: "SPECIAL", badgeColor: "bg-brand-red", type: "DJ EVENT" },
-              { date: "02.21", day: "FRI", title: "90s UK ROCK SPECIAL", dj: "Guest DJ Select", badge: "GUEST", badgeColor: "bg-brand-gold text-black", type: "DJ EVENT" },
-              { date: "02.28", day: "SAT", title: "VINYL ONLY SESSION", dj: "BYOR — Bring Your Own Records", badge: "", badgeColor: "", type: "OPEN DECK" },
-            ].map((event, i) => (
+            {events.map((event, i) => (
               <ScrollReveal key={i} delay={i * 0.1}>
                 <div
                   data-hover
@@ -864,7 +1012,7 @@ export default function Home() {
                   <p className="text-[10px] text-white/40 mt-1">バンド・アコースティックライブ・ DJイベントなどお気軽にお問い合わせください</p>
                 </div>
               </div>
-              <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-6 py-2 rounded-full border border-white/10 text-[10px] font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black hover:border-brand-gold transition-all flex items-center gap-2">
+              <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="px-6 py-3 rounded-full border border-white/10 text-[10px] font-bold tracking-widest uppercase hover:bg-brand-gold hover:text-black hover:border-brand-gold transition-all flex items-center gap-2">
                 <Instagram className="w-3 h-3" /> DMでお問い合わせ
               </a>
             </div>
@@ -946,7 +1094,7 @@ export default function Home() {
               },
             ].map((item, i) => (
               <ScrollReveal key={i} delay={i * 0.15}>
-                <div className="glass-panel p-8 md:p-10 group hover:bg-white/[0.06] transition-all duration-500 h-full flex flex-col">
+                <div className="glass-panel p-8 md:p-10 group hover:bg-white/[0.06] transition-all duration-500 h-full flex flex-col cursor-pointer">
                   <div className="w-14 h-14 rounded-2xl bg-brand-gold/10 border border-brand-gold/20 flex items-center justify-center mb-6 group-hover:bg-brand-gold group-hover:text-black transition-all duration-500">
                     <item.icon className="w-6 h-6 text-brand-gold group-hover:text-black transition-colors" />
                   </div>
@@ -991,15 +1139,21 @@ export default function Home() {
                   </div>
                 </div>
 
+                <a
+                  href="https://www.instagram.com/reroomofu7/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  data-hover
+                  className="flex items-center justify-center gap-3 w-full px-6 py-4 rounded-full bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 text-white font-bold text-sm tracking-widest uppercase hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(212,175,55,0.2)] transition-all duration-500"
+                >
+                  <Instagram className="w-5 h-5" /> Instagram DMで予約・お問い合わせ
+                </a>
                 <div className="flex flex-wrap gap-3">
-                  <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
-                    <Instagram className="w-4 h-4" /> Instagram
-                  </a>
                   <a href="https://www.facebook.com/ofuna.reroom/" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
                     <Facebook className="w-4 h-4" /> Facebook
                   </a>
                   <a href="https://map.yahoo.co.jp/v3/place/LoTzc64j59Q" target="_blank" rel="noopener noreferrer" data-hover className="flex items-center gap-2 px-5 py-3 rounded-full glass-panel hover:bg-brand-gold hover:text-black transition-all duration-500 text-sm">
-                    <MapPin className="w-4 h-4" /> Google Maps
+                    <MapPin className="w-4 h-4" /> Yahoo! MAP
                   </a>
                 </div>
               </div>
@@ -1010,7 +1164,8 @@ export default function Home() {
                 <div className="aspect-video glass-panel overflow-hidden relative group rounded-2xl">
                   <div className="absolute inset-0 bg-brand-black/50 z-10 group-hover:bg-brand-black/20 transition-colors duration-700" />
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3251.9!2d139.5335!3d35.3521!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60184e1c1b5b0f07%3A0x0!2z5aSn6Ii5MS0yMC01!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp"
+                    src="https://www.openstreetmap.org/export/embed.html?bbox=139.5308%2C35.3508%2C139.5342%2C35.3528&layer=mapnik&marker=35.3518677%2C139.5325012"
+                    title="Ofuna Re:Room 所在地マップ"
                     className="w-full h-full grayscale contrast-125 group-hover:grayscale-0 transition-all duration-1000"
                     loading="lazy"
                   />
@@ -1020,11 +1175,11 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   data-hover
-                  className="glass-panel p-4 flex items-center justify-between group hover:bg-white/[0.06] transition-all rounded-xl"
+                  className="glass-panel p-4 flex items-center justify-between group hover:bg-white/[0.06] transition-all rounded-xl cursor-pointer"
                 >
                   <div className="flex items-center gap-3">
                     <MapPin className="w-4 h-4 text-brand-gold" />
-                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">地図アプリで開く</span>
+                    <span className="text-sm text-white/60 group-hover:text-white transition-colors">Yahoo! MAPで開く</span>
                   </div>
                   <ExternalLink className="w-4 h-4 text-white/30 group-hover:text-brand-gold transition-colors" />
                 </a>
@@ -1036,13 +1191,13 @@ export default function Home() {
 
           <div className="pt-12 border-t border-white/5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-              <img src="/logo.jpg" alt="Re:Room" className="h-10 w-10 rounded-full" /><div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
+              <img src="/logo.jpg" alt="Re:Room" width={40} height={40} className="h-10 w-10 rounded-full" /><div className="font-playfair font-bold text-2xl tracking-tight">OFUNA <span className="text-brand-gold italic">RE:ROOM</span></div>
               <div className="text-[9px] tracking-[0.4em] uppercase text-white/30">© 2026 OFUNA RE:ROOM. ALL RIGHTS RESERVED.</div>
               <div className="flex gap-6">
-                <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" data-hover className="text-white/40 hover:text-brand-gold transition-colors">
+                <a href="https://www.instagram.com/reroomofu7/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" data-hover className="text-white/40 hover:text-brand-gold transition-colors cursor-pointer p-2">
                   <Instagram className="w-5 h-5" />
                 </a>
-                <a href="https://www.facebook.com/ofuna.reroom/" target="_blank" rel="noopener noreferrer" data-hover className="text-white/40 hover:text-brand-gold transition-colors">
+                <a href="https://www.facebook.com/ofuna.reroom/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" data-hover className="text-white/40 hover:text-brand-gold transition-colors cursor-pointer p-2">
                   <Facebook className="w-5 h-5" />
                 </a>
               </div>

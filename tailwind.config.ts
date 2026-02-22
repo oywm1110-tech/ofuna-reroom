@@ -19,6 +19,17 @@ const config: Config = {
       fontFamily: {
         playfair: ["var(--font-playfair)", "serif"],
         oswald: ["var(--font-oswald)", "sans-serif"],
+        sans: [
+          "system-ui",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          '"Hiragino Sans"',
+          '"Hiragino Kaku Gothic ProN"',
+          '"Noto Sans JP"',
+          '"Yu Gothic"',
+          "Meiryo",
+          "sans-serif",
+        ],
       },
     },
   },
